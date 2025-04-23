@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  BililiveRecorder-exporter:
+    image: ghcr.io/e-larex/bililiverecorder-exporter:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - API_URL=http://brec-recorder-1:2356/api/room
+      - API_USER=admin
+      - API_PASS=admin
+    restart: unless-stopped
+    networks:
+      - BililiveRecorder-exporter
+
+networks:
+  BililiveRecorder-exporter:
+    driver: bridge
